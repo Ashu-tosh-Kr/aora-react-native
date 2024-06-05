@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View className="flex-1 justify-center items-center bg-red-200">
       <Text className="text-3xl font-pblack">baby!</Text>
-      <Link href="/profile">About</Link>
+      <Link href="/home">Home</Link>
       <StatusBar style="auto" />
     </View>
   );
