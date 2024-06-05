@@ -1,10 +1,11 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { signIn } from "../../lib/appwrite";
 
 const SignIn = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -24,9 +25,7 @@ const SignIn = () => {
           <FormField
             title="Email"
             value={form.email}
-            handleChangeText={(e) =>
-              setForm((prev) => ({ ...form, email: e.target.value }))
-            }
+            handleChangeText={(e) => setForm((prev) => ({ ...form, email: e }))}
             otherStyles="mt-7"
             keyboardType="email-address"
           />
@@ -34,13 +33,27 @@ const SignIn = () => {
             title="Password"
             value={form.password}
             handleChangeText={(e) =>
-              setForm((prev) => ({ ...form, password: e.target.value }))
+              setForm((prev) => ({ ...form, password: e }))
             }
             otherStyles="mt-7"
           />
           <CustomButton
             title={"Sign In"}
-            handlePress={() => {}}
+            handlePress={() => {
+              if (!form.email || !form.password)
+                Alert.alert("Please fill all the fields");
+
+              setIsLoading(true);
+              try {
+                const result = signIn(form.email, form.password);
+                router.replace("/home");
+              } catch (e) {
+                console.log(e);
+                Alert.alert("An error occured while creating the account");
+              } finally {
+                setIsLoading(false);
+              }
+            }}
             containerStyles={"mt-7"}
             isLoading={isLoading}
           />
