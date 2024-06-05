@@ -33,7 +33,7 @@ export default function App() {
           </View>
           <Text className="text-gray-100 mt-7 text-center font-pregular text-sm">
             Where creativity meet innovation: embark on a journey of limitless
-            exploration with Melee.
+            exploration with Aora.
           </Text>
           <CustomButton
             handlePress={() => router.push("/sign-in")}
