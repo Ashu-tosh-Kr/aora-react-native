@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../constants";
+import CustomButton from "../components/CustomButton";
 
 export default function App() {
   return (
@@ -34,9 +35,14 @@ export default function App() {
             Where creativity meet innovation: embark on a journey of limitless
             exploration with Melee.
           </Text>
+          <CustomButton
+            handlePress={() => router.push("/sign-in")}
+            containerStyles={"mt-7 w-full"}
+            title={"Continue with Email"}
+          />
         </View>
       </ScrollView>
-      <StatusBar style="light" />
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 }
