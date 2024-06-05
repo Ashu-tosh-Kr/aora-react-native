@@ -14,7 +14,7 @@ const SearchInput = ({
   return (
     <View className="space-x-4 w-full relative h-16 px-4 bg-black-100 flex-row rounded-2xl border focus:border-secondary items-center">
       <TextInput
-        className="text-base text-white flex-1 font-pregular border"
+        className="text-base text-white flex-1 font-pregular my-auto"
         placeholder={"Search for a video"}
         value={value}
         placeholderTextColor={"#7b7b8b"}
