@@ -8,15 +8,16 @@ import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
 import { getAllPosts } from "../../lib/appwrite";
 import { useAppWrite } from "../../lib/useAppwrite";
+import VideoCard from "../../components/VideoCard";
 
 const Home = () => {
   const { data: posts, isLoading, refresh } = useAppWrite(getAllPosts);
 
+  // console.log(JSON.stringify(posts, null));
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
     setRefreshing(true);
-    console.log(isLoading);
     await refresh();
     setRefreshing(false);
   };
@@ -26,11 +27,7 @@ const Home = () => {
       <FlatList
         data={posts}
         keyExtractor={(itm) => itm.$id}
-        renderItem={({ item }) => (
-          <Text className="text-3xl text-white">
-            {JSON.stringify(item.$id)}
-          </Text>
-        )}
+        renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
           <View className="my-6 px-4 space-y-6">
             <View className="items-start flex-row mb-6 justify-between">
